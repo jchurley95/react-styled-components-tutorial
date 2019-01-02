@@ -6,8 +6,8 @@
 - JSX
 - CSS
 - Ternary statements
-- If you are not familiar with React: $LINK TO MY BASIC REACT TUTORIAL
-- If you are not familiar with CSS: $LINK TO A BASIC CSS TUTORIAL
+- If you are not familiar with React: https://github.homedepot.com/jch4905/basic-react-tutorial
+- If you are not familiar with CSS: https://www.w3schools.com/css/
 - If you are not familiar with Ternary Statements, just if/else written differently (familiar === true ? "familiar" : "not familiar")
 
 ## What are styled components?
@@ -47,8 +47,20 @@ I personally believe that styled components help people with less modern front-e
 React and styled components are both component based and as a result are highly compatible with eachother. They work well together for creating re-usable code with dynamic styling in a "reacty" way.
 
 ### Styled components can receive props
-- They can easily change your styling as your component state and props update
-$SHOW EXAMPLES
+They can easily change your styling as your component state and props update. When we implement a styled component, it gains access to the props of that JSX element.
+
+```javascript
+// Styled component reading the prop
+const PageDescription = styled.h3`
+    color: ${props => props.firstDescription ? "gray" : "orange"};
+`
+```
+
+```javascript
+// JSX passing prop
+<PageDescription firstDescription={true}>Not Required</PageDescription>
+<PageDescription firstDescription={false}>But very useful</PageDescription>
+```
 
 ### Styled components just read better
 This is an opinionated answer, but it really can help. On a team, you are always writing code for the next person. The big page or component that you just built might make perfect sense to you, but odds are you are not the only one who will end up working on that.
@@ -120,7 +132,7 @@ If you created the styled components in a separate file, you will need to export
 ```
 
 ### Passing props to styled components
-When we implement a styled component, it gains access to the props of that JSX element.
+Again, when we implement a styled component, it gains access to the props of that JSX element.
 
 ```javascript
 // Creating styled components
