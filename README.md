@@ -8,7 +8,7 @@
 - Ternary statements
 - If you are not familiar with React: $LINK TO MY BASIC REACT TUTORIAL
 - If you are not familiar with CSS: $LINK TO A BASIC CSS TUTORIAL
-- If you are not familiar with Ternary Statements, they're just if/else written differently (familiar === true ? "familiar" : "not familiar")
+- If you are not familiar with Ternary Statements, just if/else written differently (familiar === true ? "familiar" : "not familiar")
 
 ## What are styled components?
 - An npm package (called styled-components)
@@ -34,8 +34,8 @@ const PageDescription = styled.h3`
 // implementing styled components in JSX
 <PageWrapper>
     <PageTitle>Welcome to Styled Components</PageTitle>
-    <PageDescription firstDescription={true}>You do not have to use them</PageDescription>
-    <PageDescription firstDescription={false}>But they're very useful</PageDescription>
+    <PageDescription firstDescription={true}>Not Required</PageDescription>
+    <PageDescription firstDescription={false}>But very useful</PageDescription>
 </PageWrapper>
 ```
 
@@ -105,8 +105,8 @@ If you created the styled components in a separate file, you will need to export
 // Without styled components
 <div>
     <h1>Welcome to Styled Components</h1>
-    <h3>You do not have to use them</h3>
-    <h3>But they're very useful</h3>
+    <h3>Not Required</h3>
+    <h3>But very useful</h3>
 </div>
 ```
 
@@ -114,8 +114,8 @@ If you created the styled components in a separate file, you will need to export
 // With styled components
 <PageWrapper>
     <PageTitle>Welcome to Styled Components</PageTitle>
-    <PageDescription>You do not have to use them</PageDescription>
-    <PageDescription>But they're very useful</PageDescription>
+    <PageDescription>Not Required</PageDescription>
+    <PageDescription>But very useful</PageDescription>
 </PageWrapper>
 ```
 
@@ -131,8 +131,8 @@ const PageDescription = styled.h3`
 
 ```javascript
 // JSX with props
-<PageDescription firstDescription={true}>You do not have to use them</PageDescription>
-<PageDescription firstDescription={false}>But they're very useful</PageDescription>
+<PageDescription firstDescription={true}>Not Required</PageDescription>
+<PageDescription firstDescription={false}>But very useful</PageDescription>
 ```
 
 The `${}` syntax is another example of template literals, but just understand that in our case this syntax allows us to write some javascript that returns a value for the css property based on the props passed to the component. That ternary statement basically says if the prop of `firstDescription` is not false, null, undefined, or zero, then the font color inside that h3 will be `orange`, otherwise it will be `gray`.
