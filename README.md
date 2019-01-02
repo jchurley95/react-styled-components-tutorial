@@ -34,12 +34,12 @@ const PageDescription = styled.h3`
 // implementing styled components in JSX
 <PageWrapper>
     <PageTitle>Welcome to Styled Components</PageTitle>
-    <PageDescription firstDescription={true}>You don't have to use them</PageDescription>
+    <PageDescription firstDescription={true}>You do not have to use them</PageDescription>
     <PageDescription firstDescription={false}>But they're very useful</PageDescription>
 </PageWrapper>
 ```
 
-In a very basic sense, **styled components** are defined as variables and replace the names of our HTML elements (div, h1, button) within our JSX. You don't need to understand yet what is happening in the code above, it is just there to show a very basic example, and we will explain more about what is happening as we continue on with this tutorial.
+In a very basic sense, **styled components** are defined as variables and replace the names of our HTML elements (div, h1, button) within our JSX. You do not need to understand yet what is happening in the code above, it is just there to show a very basic example, and we will explain more about what is happening as we continue on with this tutorial.
 
 ## Why would I use styled components?
 I personally believe that styled components help people with less modern front-end experience do a better job of styling react components. Here's a few reasons why.
@@ -55,7 +55,7 @@ This is an opinionated answer, but it really can help. On a team, you are always
 
 Picture a file filled with a sea of divs and other HTML elements, each with their own props and classNames that can change based on props or state and inline styling mixed in with some inline javascript that references values from state or props and conditional renderings based on state or prop values...even that sentence is a mess trying to fit all that in.
 
-Alternatively, picture a well structured file with descriptive names for the JSX elements that don't require you to look further for a class or id, allowing you to quickly separate in your mind the structure, styling, and functionality of your component, and just focus on the changes that need to be made.
+Alternatively, picture a well structured file with descriptive names for the JSX elements that do not require you to look further for a class or id, allowing you to quickly separate in your mind the structure, styling, and functionality of your component, and just focus on the changes that need to be made.
 
 Using styled components and good, descriptive naming conventions, you can make your code so simple to read through that people who have never written code could potentially read and interpret your code. Again, this might not matter for you personally, but the next person who needs to work on this code might have less familiarity than you do with the code language/framework or even the English language, and this is something that you can do to help them do their job to the fullest.
 
@@ -105,7 +105,7 @@ If you created the styled components in a separate file, you will need to export
 // Without styled components
 <div>
     <h1>Welcome to Styled Components</h1>
-    <h3>You don't have to use them</h3>
+    <h3>You do not have to use them</h3>
     <h3>But they're very useful</h3>
 </div>
 ```
@@ -114,7 +114,7 @@ If you created the styled components in a separate file, you will need to export
 // With styled components
 <PageWrapper>
     <PageTitle>Welcome to Styled Components</PageTitle>
-    <PageDescription>You don't have to use them</PageDescription>
+    <PageDescription>You do not have to use them</PageDescription>
     <PageDescription>But they're very useful</PageDescription>
 </PageWrapper>
 ```
@@ -131,7 +131,7 @@ const PageDescription = styled.h3`
 
 ```javascript
 // JSX with props
-<PageDescription firstDescription={true}>You don't have to use them</PageDescription>
+<PageDescription firstDescription={true}>You do not have to use them</PageDescription>
 <PageDescription firstDescription={false}>But they're very useful</PageDescription>
 ```
 
