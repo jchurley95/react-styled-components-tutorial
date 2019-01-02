@@ -87,7 +87,7 @@ First of all, because it is an external npm package, we have to import the packa
 import styled from 'styled-components'
 ```
 
-Next, we need to create a styled component using the `styled` object that we imported. To create a div, you would make a `styled.div`. You can also create a `styled.button` or a `styled.input` or any other html element.
+Next, we need to create a styled component using the `styled` function that we imported. To create a div, you would make a `styled.div`. You can also create a `styled.button` or a `styled.input` or any other html element.
 We set this equal to a variable, and then we have some odd looking syntax where we use a pair of backticks to enclose all our css that will associate with that styled component. These are called template literals. If you want to understand more about them, here is some further reading: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 
 Once you have created a styled component, you can proceed to list any and all css values in there using the same naming conventions and rules as regular css.
@@ -142,9 +142,10 @@ This is a simple example that only really achieves avoiding a minor amount of re
 For a better example, consider the Home Depot UX style guide. Most of the components listed there such as buttons and system alerts have different "states" they can be in, such as the `error, disabled, or warning` states. Each of these states has its own color theme (red for error, gray for disabled, yellow for warning). If the state of the component changes, the color theme needs to change as well. For this example, imagine that the component just receives its props of currentState from a parent component. Also, this is a very simplified version of the component.
 
 ```javascript
+// UXButton.js
 import styled from 'styled-components';
 
-const ButtonWrapper = styled.button`
+const UXButtonWrapper = styled.button`
     color: ${props => props.styling.color};
     background: ${props => props.styling.background};
     cursor: ${props => props.styling.cursor};
@@ -171,7 +172,7 @@ const getStylingBasedOnCurrentState = (currentState) => {
 
 const UXButton = (props) => {
     return (
-        <ButtonWrapper styling={getStylingBasedOnCurrentState(props.currentState)}>{props.buttonText}</ButtonWrapper>
+        <UXButtonWrapper styling={getStylingBasedOnCurrentState(props.currentState)}>{props.buttonText}</UXButtonWrapper>
     )
 }
 ```
@@ -181,7 +182,7 @@ Basically, we just take in a prop of currentState and use it set a prop of styli
 In the process, we also set things up in a way that is easy to write useful tests should we import the getStylingBasedOnCurrentState function into a test file.
 
 ### You can still create your "css" files with them
-For housekeeping purposes, you should probably create your styled components in a separate file, export them, then import them where needed. This allows you to create instances of that shared style component across your entire app, avoiding repeating yourself. Also, it makes your component file less crowded. I recommend doing this from the beginning rather than waiting for it to get crowded.
+For housekeeping purposes, you should probably create your styled components in a separate file, export them, then import them where needed. This allows you to create instances of that shared styled component across your entire app, avoiding repeating yourself. Also, it makes your component file less crowded. I recommend doing this from the beginning rather than waiting for it to get crowded.
 
 My team created our own naming convention for files containing the styled components of our apps. We decided on calling them ComponentName.styled.js, where the .styled does not actually mean anything and just allows the the file to stand out in our file tree like a ".css" file would for that component.
 
@@ -190,7 +191,7 @@ For this example, just move the logic and styling into their own file.
 // UXButton.styled.js
 import styled from 'styled-components';
 
-const ButtonWrapper = styled.button`
+const UXButtonWrapper = styled.button`
     color: ${props => props.styling.color};
     background: ${props => props.styling.background};
     cursor: ${props => props.styling.cursor};
@@ -216,7 +217,7 @@ const getStylingBasedOnCurrentState = (currentState) => {
 }
 
 export {
-    ButtonWrapper,
+    UXButtonWrapper,
     getStylingBasedOnCurrentState
 }
 ```
@@ -225,24 +226,56 @@ Then, import our styled component and function back into the component file.
 
 ```javascript
 // UXButton.js
-import {ButtonWrapper, getStylingBasedOnCurrentState} from './UXButton.styled'
+import {UXButtonWrapper, getStylingBasedOnCurrentState} from './UXButton.styled'
 
 const UXButton = (props) => {
     return (
-        <ButtonWrapper styling={getStylingBasedOnCurrentState(props.currentState)}>{props.buttonText}</ButtonWrapper>
+        <UXButtonWrapper styling={getStylingBasedOnCurrentState(props.currentState)}>{props.buttonText}</UXButtonWrapper>
     )
 }
 ```
 
 ## Cool extra stuff
-### Referring to other styled components
-$Link to styled comps docs talking about this
-$SHOW EXAMPLE
-
 ### You can extend them off of eachother
-$SHOW EXAMPLE
+One cool way to avoid repeat code and make your app easier to maintain is extending styled components off of eachother. To show an example of this, we will look at another way we could have styled that UXButton component.
 
-## Helpful tips
+```javascript
+// UXButton.styled.js
+const UXButtonBaseStyle = styled.button`
+    height: 50px;
+    width: 100px;
+`
+const NormalButton = UXButtonBaseStyle.extend`
+    color: #444;
+    background: white;
+`
+const ErrorButton = UXButtonBaseStyle.extend`
+    color: red;
+    background: pink;
+`
+const WarningButton = UXButtonBaseStyle.extend`
+    color: gray;
+    background: yellow
+`
+const DisabledButton = UXButtonBaseStyle.extend`
+    color: gray;
+    background: different gray;
+`
 
+export {
+    UXButtonBaseStyle,
+    NormalButton,
+    ErrorButton,
+    WarningButton,
+    DisabledButton
+}
+```
 
-$MENTION NOT USING THE WORD CONTAINER THANKS TO REDUX
+### Referring to other styled components
+I have only ever found a couple times that this was useful, but it is a cool ability. The offical styled component docs can explain it better than I can:
+https://www.styled-components.com/docs/advanced#referring-to-other-components
+
+## Helpful tip
+- I used to always name the main wrapper JSX using a naming convention of "ComponentNameContainer". If you were to look through a lot of the code I have written, you would see this. However, as someone pointed out, Container is sort of a reserved term for Redux Containers. Because of this, I now always use the word "Wrapper" instead of "Container".
+
+#You're Done
